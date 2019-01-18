@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  #canvas {
+    border: 1px solid red;
+  }
+
+  #canvas2 {
+    position: absolute;
+    left: 0;
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="position:relative">
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <canvas id="canvas2" width="300" height="300"></canvas>
+  </div>
+
+</body>
+<script>
+  window.onload = function () {
+    let canvas = document.getElementById("canvas");
+    let canvas2 = document.getElementById("canvas2");
+    let ctx = canvas.getContext("2d");
+    let ctx2 = canvas2.getContext("2d");
+    //一个短小而精悍的小方格
+    function drawRect(x, y, w, h) {
+      ctx.rect(x, y, w, h);
+      ctx.stroke();
+    };
+    // 一个有脾气的方格子
+    function drawColor(x, y, w, h) {
+      ctx2.rect(x, y, w, h);
+      // ctx2.strokeStyle="red";
+      // ctx2.stroke();
+      ctx2.fillStyle = "green";
+      ctx2.fill();
+    }
+    // drawRect(0, 0, 20, 20);
+    // 方格
+    function drawBigRect(dx = 0, dy = 0) {
+      for (let i = 0; i < 15; i++) {
+        let y = i * 20;
+        for (let j = 0; j < 15; j++) {
+          let x = j * 20;
+          
+          if (dy === y && dx === x) {
+            drawColor(x, y, 20, 20);
+          }else {
+            drawRect(x, y, 20, 20);
+          }
+        }
+      }
+    }
+    drawBigRect();
+    canvas2.addEventListener("click", function (e) {
+      // 鼠标在canvas里面的坐标 w h
+      let w = e.clientX - canvas.getBoundingClientRect().left;
+      let h = e.clientY - canvas.getBoundingClientRect().top;
+      let dx = parseInt(w / 20) * 20;
+      let dy = parseInt(h / 20) * 20;
+      drawBigRect(dx, dy)
+      // drawColor(dx, dy, 20, 20);
+    })
+  }
+</script>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+let createTag = function() {
+  let imgs = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2310514390,3580363630&fm=27&gp=0.jpg"
+  let img = document.createElement("img");
+      img.setAttribute("src", imgs);
+      img.setAttribute("width", "100%");
+      console.log(img, "img")
+      let imgArr = img.split(">");
+      console.log(imgArr)
+
+      document.body.appendChild(imgStr);
+}
+createTag();
+</script>
+</html>

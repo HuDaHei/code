@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+  <div id="container"></div>
+  <script type="text/javascript">
+    window.onload = function() {
+    /**
+     * @desc: 分时函数 分批加载数据
+     * @param {}  data-要加载的总数据
+     * @param {Function}  func-分时执行函数
+     * @param {Number} count-分批加载多少数据
+     * @param {Number} wait-间隔加载时间
+     * @returns: 
+     */
+     function timeShare(data, func, count = 1, wait) {
+      let timer = null;
+      // 根据conut加载数据
+      function shareLoadData() {
+        const forLen = Math.min(count, data.length);
+        for(let i = 0; i < forLen; i++) {
+          const tempData = data.shift();
+          func(tempData);
+        }
+      };
+      // 分批加载数据
+      return function() {
+        timer = setInterval(function() {
+          if(data.length === 0) {
+            clearInterval(timer);
+          }
+          shareLoadData();
+        }, wait);
+      }
+    }
+       let arr = [];
+       for(let i = 0; i < 100; i++) {
+         arr.push(i)
+       };
+       let render = timeShare(arr, function(n){
+          let bodyDom = document.getElementById("container");
+          let pDom = document.createElement("p");
+              pDom.innerHTML = n;
+          bodyDom.appendChild(pDom);
+       },8,3000);
+       render();
+    }
+  </script>
+</body>
+</html>

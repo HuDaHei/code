@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+
+  <script>
+    let tempObj = { name: "call", a: 2};
+    function func(c, d) {
+      console.log(this,"this")
+      console.log(c+d+this.a,"a");
+    }
+    func();
+    func.call(tempObj);
+    // call 原理
+    Function.prototype.myCall = function(context){
+      let content = context || window;
+      console.log(this,"thiscall")
+      content.fn = this;
+      let args = [];
+      console.log(arguments,"agr");
+      for(let i=1, len = arguments.length;i < len; i++) {
+        args.push('arguments[' + i + ']');
+      }
+      console.log(...args, "agrs");
+      let result = eval('content.fn('+ args+')');
+      delete content.fn;
+      return result;
+    }
+    func.myCall(tempObj,3,4);
+    // apply 原理
+  </script>
+</body>
+</html>
