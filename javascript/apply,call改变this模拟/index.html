@@ -10,6 +10,11 @@
     }
     func();
     func.call(tempObj);
+    // 总的原理 就是在你需要的对象上添加这个函数
+    //  content.fn = this { this指向的就是你绑定的函数 个人觉得就是原型中的construct 类似类似}
+    //  执行content.fn  可以使用eval 
+    //  删除content 上面的fn delete fn
+
     // call 原理
     Function.prototype.myCall = function(context){
       let content = context || window;
@@ -27,6 +32,35 @@
     }
     func.myCall(tempObj,3,4);
     // apply 原理
+    Function.prototype.myApply = function(context) {
+      let content = context || window;
+      content.fn = this;
+      let args = arguments[1];
+      // let result = eval("content.fn("+args+")");
+      // let that = this;
+      let result = content.fn(...args); 
+      delete content.fn;
+      return result
+    };
+    let applayObj = { a: 1};
+    function applayFun (b, c) {
+      console.log(this.a , b , c,"abc");
+    }
+    applayFun.myApply(applayObj, [3,5]);
+    // bind的原理 返回一个函数 但是不会执行
+    // Function.prototype.myBind = function(context) {
+    //   let content = context || window;
+    //   content.fn = this;
+    //   let args = Array.from(arguments).slice(1)
+    //   console.log(args, "args")
+    //   return content.fn(...args)
+    // }
+    // let bindObj = { a: 10};
+    // function bindFun (b,c) {
+    //   console.log(this.a + b + c, "bind")
+    // }
+    // let bindChange = bindFun.myBind(bindObj, 5, 6);
+    // bindChange();
   </script>
 </body>
 </html>
