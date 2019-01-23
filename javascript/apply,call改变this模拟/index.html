@@ -18,14 +18,11 @@
     // call 原理
     Function.prototype.myCall = function(context){
       let content = context || window;
-      console.log(this,"thiscall")
       content.fn = this;
       let args = [];
-      console.log(arguments,"agr");
       for(let i=1, len = arguments.length;i < len; i++) {
         args.push('arguments[' + i + ']');
       }
-      console.log(...args, "agrs");
       let result = eval('content.fn('+ args+')');
       delete content.fn;
       return result;
@@ -36,8 +33,6 @@
       let content = context || window;
       content.fn = this;
       let args = arguments[1];
-      // let result = eval("content.fn("+args+")");
-      // let that = this;
       let result = content.fn(...args); 
       delete content.fn;
       return result
@@ -47,20 +42,21 @@
       console.log(this.a , b , c,"abc");
     }
     applayFun.myApply(applayObj, [3,5]);
-    // bind的原理 返回一个函数 但是不会执行
-    // Function.prototype.myBind = function(context) {
-    //   let content = context || window;
-    //   content.fn = this;
-    //   let args = Array.from(arguments).slice(1)
-    //   console.log(args, "args")
-    //   return content.fn(...args)
-    // }
-    // let bindObj = { a: 10};
-    // function bindFun (b,c) {
-    //   console.log(this.a + b + c, "bind")
-    // }
-    // let bindChange = bindFun.myBind(bindObj, 5, 6);
-    // bindChange();
+    // bind的原理 返回一个函数 由此基于apply 编写bind 但是不会执行
+    Function.prototype.myBind = function(context) {
+      let content = context || window;
+      let self = this;
+      let args = Array.from(arguments).slice(1)
+      return function() {
+         self.apply(content, args);
+      }
+    }
+    let bindObj = { a: 10};
+    function bindFun (b,c) {
+      console.log(this.a + b + c, "bind")
+    }
+    let bindChange = bindFun.myBind(bindObj, 5, 6);
+    bindChange();
   </script>
 </body>
 </html>
