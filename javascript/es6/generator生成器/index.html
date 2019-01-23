@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<!-- generator -->
+<script>
+  // 基本语法结构
+  // generator 遇到yield 就是暂停执行 需通过next手动触发
+  function* gen() {
+    yield 100;
+    yield 200;
+    return 300;
+  }
+  let g = gen();
+  // 使用 通过调用next方法去手动执行gen
+  console.log(g.next());  // 100
+  console.log(g.next()); //200
+  console.log(g.next()); // 300
+  // 可以给generator 传参 该参数就会被当作上一个yield表达式的返回值。
+  console.log("给generator 传参")
+  function* paramGen (x) {
+     let y = yield x + 3;
+     yield y + 3;
+     return 300;
+  }
+  let pGen = paramGen(2);
+  console.log(pGen.next());
+  console.log(pGen.next(900));
+  console.log(pGen.next());
+  // for of 类似于自动执行器 但是generator里面的retunr 是不执行的
+  console.log("for of") 
+  function* forGen () {
+    yield 1;
+    yield 2;
+    yield 3;
+    return 4;
+  }
+  let fGen = forGen();
+  for(let x of fGen){
+    console.log(x); //不会打印 4；
+  }
+  // 扩展运算符（...）、解构赋值和Array.from 都是遍历器接口
+  console.log('扩展运算符（...）、解构赋值和Array.from');
+  function* extend() {
+    yield 1;
+    yield 2;
+    yield 3;
+    return 4;
+  }
+  let kz = extend();
+  console.log([...kz]);
+  function* deconstruction() {
+    yield 1;
+    yield 2;
+    yield 3;
+    return 4;
+  }
+  let dec = deconstruction();
+  let [a,b,c] = dec;
+  console.log(a,b,c);
+  function* arrayGen() {
+    yield 1;
+    yield 2;
+    yield 3;
+    return 4;
+  }
+  let arrayG = arrayGen();
+  console.log(Array.from(arrayG));
+  // throw 捕获错误
+  function* errGen () {
+    try{
+      yield ;
+    }catch(e){
+      console.log("generator内部出错", e)
+    }
+  }
+  let errthr = errGen();
+ 
+  try{
+    console.log( errthr.next())
+    // errthr.throw("a");
+  }catch(e) {
+    console.log("generator外部报错", e)
+  }
+  // return  终止生成器的执行 下一步的next 不在执行 就此over
+  function* returnGen () {
+    yield 1;
+    yield 2;
+    yield 3;
+  }
+  let reGen = returnGen();
+  console.log("return")
+  console.log(reGen.next());
+  console.log(reGen.return("over"))
+  console.log(reGen.next());
+  // yield 表达式 generator中执行另一个generator
+  function* fatherGen (){
+    yield 100;
+    yield* childrenGen();
+    return 400;
+  }
+  function* childrenGen(){
+    yield "200我是children里面的";
+    yield "300我是children里面的";
+  }
+  let father = fatherGen();
+  console.log(father.next())
+  console.log(father.next())
+  console.log(father.next())
+  console.log(father.next());
+  // generator 实现状态机
+  let clockG = function* () {
+    while(true){
+      console.log("tick");
+      yield;
+      console.log("tock");
+      yield;
+    }
+  }
+  let clock = clockG();
+  console.log(clock.next());
+  console.log(clock.next());
+  console.log(clock.next());
+  console.log(clock.next());
+  // 基本应用 异步同步化
+  console.log("application")
+  function* asyncPrint() {
+   let result =  yield asyncAction();
+   console.log(result);
+   return "end";
+  }
+  //模拟异步行为
+  function asyncAction() {
+    setTimeout(()=>{
+      console.log("我返回值了")
+      aync.next("我是异步之后执行的")
+    },5000)
+  }
+  let aync = asyncPrint();
+  aync.next(); 
+  // 
+</script>
+</body>
+</html>

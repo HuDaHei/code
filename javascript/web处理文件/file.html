@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="">
+    <input type="file" name="file" id="formFile" multiple>
+  </form>
+  <img src="" alt="" id="fileImg" width="200">
+  <script>
+    let inputFile = document.getElementById("formFile");
+    let img = document.getElementById("fileImg");
+    inputFile.addEventListener("change", function (e) {
+      let reader = new FileReader();
+      let formData = new FormData();
+      // 使用formData 上传文件
+      let imgFile = e.target.files
+      reader.readAsDataURL(imgFile[0]);
+      formData.append("images", imgFile[0]);
+     
+      reader.addEventListener("load", function (e) {
+        console.log(e)
+        console.log(formData, "formData")
+        img.src = reader.result;
+      })
+    })
+  </script>
+</body>
+
+</html>
