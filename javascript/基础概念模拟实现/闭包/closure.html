@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>closure闭包</title>
+</head>
+
+<body>
+  <script>
+    // 含义 可以访问自由变量的[函数]  叫闭包
+    //  自由变量 不属于这个函数的变量 叫自由变量
+    function bigFun() {
+      let b = 1;
+      let c = 2;
+      return function(){
+        console.log(c)
+      }
+    }
+    let closure = bigFun();
+    closure();
+  </script>
+</body>
+
+</html>
