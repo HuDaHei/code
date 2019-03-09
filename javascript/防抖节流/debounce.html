@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>防抖</title>
+</head>
+<body>
+  <span>防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间</span>
+  <span>原理; 在n秒内 事件在一次触发 就清空上一个事件 重新生成一个事件</span>
+  <script>
+    // 如果在n秒又执行了 则回滚回去
+    // function print() {
+    //   let time;
+    //   return function() {
+    //     console.log("x");
+    //     console.log(time)
+    //     if(time) clearTimeout(time);
+    //     time = setTimeout(function(){
+    //       console.log("888")
+    //     }, 3000);
+    //   }
+    // };
+    // window.onresize = print();
+    // 简单模拟封装一个 防抖函数
+    function deb(fn, delay) {
+      let time; 
+      return function() {
+         if(time) {
+           clearTimeout(time);
+         }
+         time = setTimeout(fn,delay);
+      }
+    };
+    let print = function() {
+        console.log("print")
+      }
+    window.onresize = deb(print, 3000);
+  </script>
+</body>
+</html>
