@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>节流</title>
+</head>
+
+<body>
+  <span>连续触发事件但是在 n 秒中只执行一次函数</span>
+  <script>
+    // 简单模拟实现节流
+    function smple() {
+      let time;
+      return function () {
+        if (!time) {
+          time = setTimeout(function () {
+            time = null;
+            console.log("th")
+          }, 5000)
+        }
+      }
+    }
+    window.onresize = smple();
+  </script>
+</body>
+
+</html>
