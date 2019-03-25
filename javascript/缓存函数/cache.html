@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * @desc: 缓存函数 缓存结果 提高web加载速度
+     * @principle: 我觉得就是对闭包的灵活使用
+     * @param {type} 
+     * @returns: 
+     */
+    //  简单例子
+    function cache() {
+      let cache = {};
+      return function (someProto) {
+        if (cache[someProto]) {
+          console.log("我从缓存进入");
+          return cache[someProto];
+        } else {
+          console.log("我没有从缓存进入");
+          cache[someProto] = "hanjun"
+          return cache[someProto];
+        }
+      }
+    }
+    let cacheFun = cache();
+    let cacheOne = cacheFun("name");
+    let cacheTwo = cacheFun("name");
+    let cacheThr = cacheFun("name");
+    console.log("------------------------")
+    // 
+    const memorize = function(fn) { 
+      let cache = {};
+      return function(...args) {
+        const _args = JSON.stringify(args);
+        return cache[_args] || (cache[_args] = fn.apply(fn, args));
+      }
+    }
+    function add(num) {
+      console.log("我没有从缓存进入");
+      return num + 1;
+    }
+    const me = memorize(add);
+    let one= me(1);
+    let two= me(2);
+    let thr= me(1);
+    console.log(one);
+    console.log(two);
+    console.log(thr);
+  </script>
+</body>
+
+</html>
