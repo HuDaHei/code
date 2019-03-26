@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1000.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>async</title>
+</head>
+<body>
+  <script>
+    // 网络案例 肚包鸡
+      // 准备
+      function prepare() {
+        return new Promise(resolve => {
+          setTimeout(()=>{
+            console.log("准备鸡材料");
+            resolve();
+          }, 1000)
+        });
+      };
+      // 炒鸡
+      function fired() {
+        return new Promise(resolve => {
+          setTimeout(()=>{
+            console.log("开始炒鸡")
+            resolve();
+          }, 1000)
+        });
+      }
+      // 炖鸡
+      function stewd() {
+        return new Promise(resolve => {
+          setTimeout(()=>{
+            console.log("开始炖鸡")
+            resolve();
+          }, 1000)
+        });
+      }
+      // 上料
+      function sdd() {
+        return new Promise(resolve => {
+          setTimeout(()=>{
+            console.log("开始上料")
+            resolve();
+          }, 1000)
+        });
+      }
+      // 吃惊
+      function eat() {
+        return new Promise(resolve => {
+          setTimeout(()=>{
+            console.log("吃鸡")
+            resolve();
+          }, 1000)
+        });
+      }
+      async function task() {
+        console.log("今天做鸡吃");
+        try{
+          await prepare();
+          await fired();
+          await stewd();
+          await sdd();
+          await eat();
+          console.log("完美");
+        }catch(err){
+          console.log(err)
+        }
+      };
+      task();
+  </script>
+</body>
+</html>
