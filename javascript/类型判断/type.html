@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // typeof
+    let someDataArray = [{},null,undefined,'string',[],true,NaN]
+    console.log(someDataArray)
+    //
+    someDataArray.forEach(element => {
+      console.log(typeof element);
+    });
+    // 上面的结果
+    // object
+    // object
+    // undefined
+    // string
+    // object
+    // boolean
+    // number
+    /////////////////得出 typeof 无法区分 对象 null 数组 之间的区别 都会认为是一个对象 后续有时间研究下typeof
+    console.log('instanceof start........')
+    ///instanceof
+    someDataArray.forEach(element => {
+      console.log(element instanceof Object,element,'Object');
+    });
+    console.log('instanceof end........')
+    /////////////////// 得出 instanceof 无法区分 数组和对象 他们的结果都是true
+    // objec.prototype.toString.call(xx);
+      someDataArray.forEach(element => {
+        console.log(Object.prototype.toString.call(element).slice(8, -1));
+      });
+  </script>
+</body>
+
+</html>

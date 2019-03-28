@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 对于多个条件使用Array.includes
+    let someData = ['apple', 'banner', 'hei', 'hahah']
+    console.log(someData.includes('apple'));
+    //更少的嵌套 更早返回
+    let bigSomeData = someData.concat(['hanjun', 'lll']);
+
+    // 使用默认的函数参数 和解构
+
+    // 使用Map和对象 少用switch
+    // 所有 或者部分 使用Array.some() 或 Array. every()
+    let someObj = [
+      {
+        'name': 'hanjun',
+        'age': '13'
+      },
+      {
+        'name': 'hanjun2',
+        'age': '13'
+      },
+      {
+        'name': 'hanjun3',
+        'age': '13'
+      },
+      {
+        'name': 'hanjun4',
+        'age': '13'
+      }
+    ];
+    console.log(someObj.every(f => { return f.age === '13' }))
+    console.log(someObj.some(f => { return f.name === 'hanjun' }))
+
+  </script>
+</body>
+
+</html>
