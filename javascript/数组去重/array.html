@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>数组去重</title>
+</head>
+
+<body>
+	<script>
+		let hasArray = [12, 3, 4, 12, 3, 4, 5, 6, 7, 7, 7, 5, 5, 5, 6];
+		//第一种 使用es6 中的set
+		let newArray = new Set([...hasArray]);
+		console.log(Array.from(newArray));
+
+		// 第二种 使用includes
+		let temp = [];
+	  hasArray.forEach((item)=>{
+			if(!temp.includes(item)) {
+				temp.push(item);
+			}
+		});
+		console.log(temp)
+		// 第三种 排序后去重 缺点 会对原数据进行排序
+		let hasArrayTwo = [...hasArray];
+		hasArrayTwo.sort((a,b)=>{ return a-b });
+		let tempArr = [];
+		tempArr = hasArrayTwo.filter((item, index)=>{ 
+       if(item !== hasArrayTwo[index+1]) {
+				 console.log(item)
+				 return item
+			 }
+		});
+    console.log(tempArr)
+		// 第四种 使用object的键值对来  缺点 会把数值变为字符串
+		let hasArrayThr = [...hasArray];
+		let tempObj = {};
+		hasArrayThr.forEach((item)=>{
+			let propertys = item + '';
+			console.log(propertys);
+			if(!tempObj.hasOwnProperty(propertys)) {
+					tempObj[propertys] = item;
+			}
+		});
+		console.log(Object.keys(tempObj));
+
+
+
+	</script>
+</body>
+
+</html>
