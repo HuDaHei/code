@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<!-- 模拟实现一个new -->
+	<script>
+		// new 能干吗?
+		// 创建一个对象 所以return 只能是一个对象
+		// 继承 这个构造函数
+		function mynew() { 
+			// 个人觉得 虽然采用shift 不错 我还是不太喜欢 修改arguments 
+			// let Construct = [].slice.apply(arguments,[0,1])[0];
+			let Construct = [].shift.apply(arguments);
+			let judeObj = Object.prototype.toString.call(Construct).slice(8,-1);
+			if(judeObj === 'Function'){
+				let newObj = Object.create(Construct.prototype);
+				// Construct.apply(newObj, [].slice.call(arguments,1))
+				Construct.apply(newObj, arguments);
+				return newObj;
+			} else {
+				return {};
+			}
+		}
+		function Gz(name) {
+			this.name = name;
+		}
+		// 
+		let gzObj = mynew(Gz,'hanjun');
+		let gzObj2 = mynew(null,'hanjun');
+    console.log(gzObj.name)
+    console.log(gzObj2.name)
+	</script>
+</body>
+
+</html>
