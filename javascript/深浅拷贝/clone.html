@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原理
+        // 浅拷贝: js中相当于只拷贝了 对象在栈中的地址 
+        // 深拷贝: 拷贝所有属性 并重新分配内存
+
+        // 模拟深拷贝
+        function deepClone(param) {
+            let tempVar = {};
+            Object.keys(param).forEach(ele => {
+                let isObject = Object.prototype.toString.call(param[ele]).slice(8,-1);
+                if (isObject === 'Object') {
+                    tempVar[ele] = deepClone(param[ele]);
+                } else {
+                    tempVar[ele] = param[ele]
+                }
+            });
+            return tempVar;
+        };
+        let someData = {
+            name: 'hanjun',
+            other: {
+                'name': 'hanjun2'
+            }
+        }
+        let s = deepClone(someData);
+        s.other.name = 'w'
+        console.log(someData, s)
+
+
+
+    </script>
+</body>
+
+</html>
