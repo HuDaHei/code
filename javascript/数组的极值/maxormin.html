@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 求数组的最大值
+        let someArray = [23, 43, 534, 333, 22, 4, 32, 22, 33, 45, 66];
+        // 第一种方法 math.max
+        console.log(Math.max(...someArray), "第一种方法");
+        // 第二种 排序
+        let max = someArray[0];
+        let arrLen = someArray.length;
+        let newArr = [];
+        for (let i = 0; i < arrLen; i++) {
+            for (let j = 0; j < arrLen - 1 - i; j++) {
+                if (someArray[j + 1] < someArray[j]) {
+                    let temp = someArray[j];
+                    someArray[j] = someArray[j + 1];
+                    someArray[j + 1] = temp;
+                }
+            }
+        }
+        console.log(someArray[arrLen - 1])
+        //    sort
+        let someArray2 = [23, 43, 534, 333, 22, 4, 32, 22, 33, 45, 66];
+        console.log(someArray2.sort((a, b) => {
+            return a - b;
+        }));
+        // apply
+        let someArray3 = [23, 43, 534, 333, 22, 4, 32, 22, 33, 45, 66];
+        console.log(Math.max.apply(null, someArray3));
+        // reduce
+        console.log(someArray3.reduce((prev, next) => {
+            return Math.max(prev, next);
+        }))
+    </script>
+</body>
+
+</html>
