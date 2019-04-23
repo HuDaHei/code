@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 作用域分为静态作用域和动态作用域
+            // 静态作用域 变量的范围在编码阶段就已经确定
+            // 动态作用域 变量在代码在运行阶段才确定
+        //example
+        let x = 1; 
+        function test() {
+            console.log(x)
+        } 
+        function test2() {
+            let x = 2;
+            test();
+        }
+        test2(); // 结果就是1 哈哈哈哈
+    
+    
+    
+    
+    
+    
+    </script>
+</body>
+</html>
