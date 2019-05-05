@@ -1,4 +1,4 @@
-import PubSub from './../pubsub';
+import PubSub from './../pubsub.js';
 export default class Stroe {
     constructor (params) {
         let self = this;
@@ -17,6 +17,7 @@ export default class Stroe {
         self.state = new Proxy(params.state, {
             set: (state,key,value) =>{
                 state[key] = value;
+                console.log("在action时候应该我被执行")
                 self.events.publish('stateChange',self.state);
                 if(self.status !== 'mutation') {
                     console.warn('应该使用mutation 来设置')
@@ -33,7 +34,7 @@ export default class Stroe {
             console.error(`Action${actionkey} 不存在`);
             return false;
         }
-        console.groupCollapsed(`action${actionkey}`)
+        console.groupCollapsed(`action---${actionkey}`)
         self.status = 'action';
         self.actions[actionkey](self,payload);
         console.groupEnd();

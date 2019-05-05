@@ -11,7 +11,7 @@ export default class PubSbu {
         }
         return self.events[event].push(callback);
     }
-    publist(event, data = {}) {
+    publish(event, data = {}) {
         let self = this;
         if(!self.events.hasOwnProperty(event)) {
             return []
