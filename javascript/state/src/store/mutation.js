@@ -7,6 +7,7 @@ export default {
     },
     clearItem (state, payload) {
         state.items.splice(payload.index, 1);
+        console.log(state, "我是mutaion里面的state")
         return state
     }
 }

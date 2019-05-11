@@ -6,10 +6,11 @@ import Statu from './js/component/status.js'
 const formElement = document.querySelector('.js-form')
 const inputElement = document.querySelector('#new-item-field')
 
-formElement.addEventListener('submint', evt => {
+formElement.addEventListener('submit', evt => {
     evt.preventDefault();
     let value = inputElement.value.trim();
     if(value.length) {
+        console.log("我执行了");
         store.dispatch('addItem', value);
         inputElement.value = "";
         inputElement.focus();

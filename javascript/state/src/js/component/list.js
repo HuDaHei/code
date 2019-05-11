@@ -14,7 +14,6 @@ export default class List extends Component {
     }
 
     render() {
-        console.log("render")
         let self = this;
         if (store.state.items.length === 0) {
             self.element.innerHTML = '<p class="no-items">Youve done nothing yet &#x1f622;</p>'

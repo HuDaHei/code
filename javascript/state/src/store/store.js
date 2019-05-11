@@ -17,7 +17,7 @@ export default class Stroe {
         self.state = new Proxy(params.state, {
             set: (state,key,value) =>{
                 state[key] = value;
-                console.log("在action时候应该我被执行")
+                // 通知stateChange 发生改变了
                 self.events.publish('stateChange',self.state);
                 if(self.status !== 'mutation') {
                     console.warn('应该使用mutation 来设置')
