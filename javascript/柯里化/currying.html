@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 解释:  把接受多个参数的函数变换成接受一个单一参数的函数 [并且返回接受余下参数且返回结果的新函数的技术] 多元函数转化为单元函数 (元 参数个数)
+        // 参数复用 提前返回 延迟计算
+        let add = (a, b, c) => {
+            console.log(a+b+c, "x")
+            return a + b + c;
+        }
+        let curryFunc = function(fn) {
+            let args = [...arguments].slice(1);
+            return function () {
+                let newArgs = args.concat([].slice.call(arguments));
+                return fn.apply(this, newArgs);
+            }
+        }
+        // let curryFn = curryFunc(add,2,3,4);
+        // console.log(curryFn());
+        // let curryFns = curryFunc(add,2);
+        // console.log(curryFns(3,4));
+        // 收集参数 延迟执行(返回的是一个函数不是一个结果 所以延迟咯)
+        //参数收集，并在收集完毕之后执行所有参数的一个过程。
+        let thisCurry =  function(fn) {
+            let args = [...arguments].slice(1); // 获取除了fn以外的参数
+            let fnParamsLength = fn.length;
+            return function() {
+                let _args = [...arguments,...args];
+                console.log(_args)
+                if(_args.length < fnParamsLength) {
+                    return thisCurry.call(this, fn, ..._args)
+                }
+                return fn.call(this,..._args)
+            }
+        }
+        let x = thisCurry(add);
+        let y = x(1,2,3);
+        console.log(y)
+    </script>
+</body>
+</html>
