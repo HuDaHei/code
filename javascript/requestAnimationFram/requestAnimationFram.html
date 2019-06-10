@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #SomeElementYouWantToAnimate {
+        width: 20px;
+        height: 20px;
+        background-color: aqua;
+    }
+    </style>
+</head>
+<div id="SomeElementYouWantToAnimate"></div>
+<body>
+    <script>
+        // 动画请求函数 会根据设备的毫秒值自动来适配设备 比setTimout好多了
+        var start = null;
+        var element = document.getElementById('SomeElementYouWantToAnimate');
+        element.style.position = 'absolute';
+
+        function step(timestamp) {
+            console.log(timestamp, "timestamp")
+        if (!start) start = timestamp;
+        var progress = timestamp - start;
+        element.style.left = Math.min(progress / 10, 300) + 'px';
+        element.style.top = Math.min(progress / 10, 300) + 'px';
+        if (progress < 3000) {
+            window.requestAnimationFrame(step);
+        }
+        }
+
+        window.requestAnimationFrame(step);
+    </script>
+</body>
+</html>
