@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 原型链继承 属性和方法都可以被继承
+    // 爸爸 
+    function FatherFun() {
+      this.name = 'hanjun';
+      this.age = 18;
+      this.address = "江苏南京市"
+    }
+    // 儿子
+    function SonFun() {
+      this.hobby = 'study'
+      console.log(this.name,this.age,this.address)
+    }
+    SonFun.prototype = new FatherFun();
+    let somechildren = new SonFun();
+    console.info(somechildren.hobby)
+    //无法向FatherFun传递参数
+    // 构造函数继承 优点可以传递参数
+    function FatherFunGZ(name,age,address) {
+      this.name = name;
+      this.age = age;
+      this.address = address;
+    }
+    function SonFunGZ(name,age,address) {
+      FatherFunGZ.call(this,name,age,address)
+      this.hobby = 'study'
+    }
+    let someChildrenGZ = new SonFunGZ('我吃柠檬',18,'南京');
+    let someChildrenGZ2 = new SonFunGZ('二狗',39,'杭州');
+    console.info(someChildrenGZ)
+    console.info(someChildrenGZ2)
+    // 组合继承
+    function FatherFunCM(name) {
+      this.name = name;
+    }
+    FatherFunCM.prototype.sayHello = function(){
+      console.log(this)
+      console.log(this.name + 'hello')
+    }
+    function SonFunCM () {
+      FatherFunCM.call(this,'哈哈');
+    }
+    SonFunCM.prototype = new FatherFunCM();
+    SonFunCM.prototype.constructor = SonFunCM;
+    SonFunCM.prototype.eat = () => {
+      console.log('吃东西')
+    }
+    const someChildrenCm = new SonFunCM();
+    someChildrenCm.sayHello()
+    
+    
+    
+    
+    
+  </script>
+</body>
+</html>
