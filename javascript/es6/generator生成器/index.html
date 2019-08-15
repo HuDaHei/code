@@ -24,9 +24,9 @@
   // 可以给generator 传参 该参数就会被当作上一个yield表达式的返回值。
   console.log("给generator 传参")
   function* paramGen (x) {
-     let y = yield x + 3;
-     yield y + 3;
-     return 300;
+      let y = yield x + 3;
+      yield y + 3;
+      return 300;
   }
   let pGen = paramGen(2);
   console.log(pGen.next());
@@ -41,6 +41,7 @@
     return 4;
   }
   let fGen = forGen();
+  console.log("for 开始")
   for(let x of fGen){
     console.log(x); //不会打印 4；
   }
@@ -53,7 +54,7 @@
     return 4;
   }
   let kz = extend();
-  console.log([...kz]);
+  console.log([...kz], 'kz');
   function* deconstruction() {
     yield 1;
     yield 2;
@@ -62,7 +63,7 @@
   }
   let dec = deconstruction();
   let [a,b,c] = dec;
-  console.log(a,b,c);
+  console.log(a,b,c, 'dec');
   function* arrayGen() {
     yield 1;
     yield 2;

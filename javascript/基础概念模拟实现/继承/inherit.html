@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 原型链继承 原理 利用原型让一个引用类型继承另一个引用类型的属性和方法
+        function Fatherline() {
+            this.name = 'hanjun';
+            this.quesion = ['1','2']
+            this.sayName = function(){
+                console.log(this.name);
+                console.log(this.quesion)
+            }
+        }
+        function Child() {
+
+        }
+        Child.prototype = new Fatherline();
+        const son = new Child();
+        son.sayName();
+        const sontwo = new Child();
+        sontwo.quesion.push('3'); // 这样会导致  其他继承的函数 也会改变 --- 引用类型的属性被所有实例共享
+        son.sayName(); // son 本来是['1','2'] 最后打印出来是['1','2','3']
+        // 在创建child的时候无法向Fatherline传递参数
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const reflectObj = {
+      name: 'hanjun'
+    }
+    const resultHas = Reflect.has(reflectObj,'name');
+    const resultGet = Reflect.get(reflectObj, 'age')
+    console.log(resultGet, "result")
+    delete reflectObj.age
+    let resultDefine = Reflect.defineProperty(reflectObj,'age', {
+      value: ()=>{
+        setTimeout(()=> {
+          return '90'
+        }, 9000)
+      }
+    });
+    console.log(reflectObj.age, "resultDefine")
+  </script>
+</body>
+</html>
