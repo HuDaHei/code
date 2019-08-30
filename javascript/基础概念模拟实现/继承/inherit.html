@@ -27,6 +27,19 @@
         sontwo.quesion.push('3'); // 这样会导致  其他继承的函数 也会改变 --- 引用类型的属性被所有实例共享
         son.sayName(); // son 本来是['1','2'] 最后打印出来是['1','2','3']
         // 在创建child的时候无法向Fatherline传递参数
+        console.log(son instanceof Fatherline)
+        // 组合继承
+        console.log('组合继承')
+        function One(name) {
+            this.name = name
+        }
+        function Two(name) {
+            One.call(this,name)
+        }
+        Two.prototype = new One();
+        Two.prototype.construct = Two;
+        const instance = new Two('嘻嘻');
+        console.log(instance, 'instance')
     </script>
 </body>
 </html>

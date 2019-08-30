@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .drag-container {
+      height: 200px;
+      background-color: aquamarine;
+    }
+    .drag-ele {
+      height: 50px;
+      width: 50px;
+      background-color: blueviolet;
+    }
+    .drag-positon {
+      height: 200px;
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <!-- drag -->
+  <div class="drag-container">
+    <div class="drag-ele" draggable="true" id="drag">我即将被拖拽</div>
+  </div>
+  <div class="drag-positon">我被拖拽到这里</div>
+  <div class="drag-positon">我被拖拽到这里</div>
+  <script>
+    const dragDom = document.querySelector("#drag");
+    let dragged = null;
+    document.addEventListener('dragstart', (event)=> {
+      dragDom.style.opacity = 0.5;
+    },false)
+    document.addEventListener('drag', (event)=> {
+      dragged = event.target;
+    },false)
+    document.addEventListener("dragover", function(event) {
+      event.preventDefault();
+    }, false);
+    document.addEventListener('dragend', (event)=> {
+      dragDom.style.opacity = 1;
+    },false)
+    document.addEventListener('drop', (event)=> {
+        // drop event 当前释放的dom元素
+        dragged.parentNode.removeChild( dragged );
+        event.target.appendChild( dragged );
+    },false)
+  </script>
+</body>
+</html>

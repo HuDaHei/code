@@ -11,19 +11,20 @@
         // wiki: 固定一个函数的一些参数 产生一个更小元的函数
         // 实现原理----闭包
         // 最大的应用 应该是bind函数的应用了 嘻嘻
-        let partialfun  = function(fn) {
-            const argu = Array.from(arguments).slice(1);
-            return function(a) {
-                argu.push(a)
-                return fn.apply(this,argu)
-            }
-        }
-        function add(a,b,c) {
-            return a + b + c;
-        }
-        let newAdd = partialfun(add,2,3);
-        let x = newAdd(5);
-        console.log(x)
+        // let partialfun  = function(fn) {
+        //     const argu = Array.from(arguments).slice(1);
+        //     return function(a) {
+        //         argu.push(a)
+        //         return fn.apply(this,argu)
+        //     }
+        // }
+        // function add(a,b,c) {
+        //     return a + b + c;
+        // }
+        // let newAdd = partialfun(add,2,3);
+        // let x = newAdd(5);
+        // console.log(x)
     </script>
+    <script src="./partial.js"></script>
 </body>
 </html>
