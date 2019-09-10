@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #cavase {
+      box-shadow: 0px 0px 1px #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="cavase" width="200" height="200"></canvas>
+  <script>
+    const canvasDom = document.querySelector('#cavase')
+    const ctx = canvasDom.getContext('2d');
+    // ctx.fillRect(2,2,10,10)
+    // ctx.clearRect(4,4,5,5)
+    // ctx.strokeRect(16,2,10,10)
+    // // 路径画图
+    // ctx.beginPath();
+    // ctx.moveTo(50,50);
+    // ctx.lineTo(150,0);
+    // ctx.lineTo(150,100);
+    // // ctx.fill(); 填充
+    // ctx.closePath();
+    // ctx.stroke() 
+    // // 圆弧
+    // ctx.arc(50,140,6,0,2 * Math.PI, true)
+    // ctx.stroke();
+    // 二次塞北尔曲线
+    ctx.beginPath()
+    ctx.moveTo(60,160) // x y
+    ctx.quadraticCurveTo(40,160,40,140) // 弯角
+    ctx.quadraticCurveTo(40,110,40,110) //直线
+    ctx.quadraticCurveTo(40,10,60,60)
+
+    ctx.stroke();
+  </script>
+</body>
+</html>
