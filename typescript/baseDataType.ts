@@ -18,6 +18,7 @@ enum weekday {
 }
 const day:weekday = weekday.monday;
 // any 防止报错 ，预估未来可能的值
+console.log(day, 'day')
 let someAny: any = {};
 someAny = ''
 // 类型断言 就是你明确的知道某个值是啥子类型 但是 typescript 推断的有误的  为了不报错 就使用断言来消除

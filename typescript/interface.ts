@@ -60,6 +60,7 @@ someF = function(w:string,t:string):boolean {
   return Boolean(0)
 }
 // 可索引类型
+  // 描述了对象索引的类型 还有相应的索引类型返回的类型
   // 就是给复杂类型的的value定义类型 比如对象的value 或者数组的index
   // 支持俩种索引
   // 字符串索引
@@ -70,3 +71,25 @@ someF = function(w:string,t:string):boolean {
   let someD: complexData;
   someD = ['22','ll']
   let soemC:Object = someD[1]
+
+  //类 类型
+  // 强制一个类去符合某种契约或者某种规则
+  // 不会去校验私有成员
+  interface someInterface {
+    param: Date
+  }
+  class someC implements someInterface {
+    param: Date;
+    xx:number;
+    constructor(h:number,m:number){}
+  }
+//   interface ClockConstructor {
+//       currentTime: Date;
+//       new (hour: number, minute: number);
+// }
+
+//   class Clock implements ClockConstructor {
+//       currentTime: Date;
+//       constructor(h: number, m: number) { }
+//   }
+  debugger;
