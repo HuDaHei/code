@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .container{
+      background: bisque;
+      overflow: auto;
+    }
+    .div--float{
+      float: left;
+      height: 100px;
+      background: aqua;
+    }
+    .div--normal{
+      background: aquamarine;
+    }
+    .aside{
+      float: left;
+      width: 100px;
+      height: 100px;
+      background: burlywood;
+    }
+    .main {
+      height: 200px;
+      background: chartreuse;
+      display: flow-root;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="div--float">我是div</div>
+    <div class="div--normal">我是span</div>
+  </div>
+  <div>lll
+      <div style="margin-bottom:40px;background: blanchedalmond;">up</div>
+      <div style="overflow: hidden;">
+          <div style="margin-top: 20px;background: blue;">down</div>
+      </div>
+  <h1>BFC使用</h1>
+  <div style="border: 10px solid yellow;">
+    <div class="aside" style="border: 10px solid yellow;">aside</div>
+    <div class="main" style="border: 10px solid yellow;">main</div>
+  </div>
+  </div>
+</body>
+</html>
