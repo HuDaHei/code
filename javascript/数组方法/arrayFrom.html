@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  Arrar.from
+  <script>
+    const str = "ksldfks啊哈哈";
+    const strArr = Array.from(str);
+    console.log(str, 'str')
+    console.log(strArr, 'strArr')
+    const likeArr = {
+      '-1': "oooo",
+      length: 1,
+    }
+    const newLikeArr = Array.from(likeArr);
+    console.log(newLikeArr, 'newLikeArr')
+    function test(x, y){
+      const args = Array.from(arguments);
+      console.log(args, 'arguments');
+      console.log(arguments, 'arguments');
+    } 
+    test(2, 5);
+    // 扩展运算符
+    function testExpland(...rest) {
+      console.log(rest)
+    }
+    testExpland(4,6,6,6,6,6,6,66)
+  </script>
+  
+</body>
+</html>
