@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>IntersectionObserver</title>
+  <style>
+    .one-child{
+      height: 200px;
+      background-color: rebeccapurple;
+    }
+  </style>
+</head>
+<body>
+  <div class="root">
+    <div class="one-child"></div>
+    <div class="one-child"></div>
+    <div class="one-child"></div>
+    <div class="one-child"></div>
+    <div class="one-child"></div>
+    <div class="one-child"></div>
+    <div class="one-child"></div>
+    <div class="one-child" id="son"></div>
+  </div>
+  <script>
+      // 一种异步观察目标元素是否进入父元素的方法
+      const intersectionObserver = new IntersectionObserver((entery)=> {
+        console.log(entery,'enter');
+      });
+  </script>
+</body>
+</html>
