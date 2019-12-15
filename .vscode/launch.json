@@ -10,5 +10,23 @@
     "name": "Launch Program",
     "program": "${workspaceFolder}/app.js"
   },
+    {
+      "name": "Current TS File",
+      "type": "node",
+      "request": "launch",
+      "args": [
+        "${relativeFile}"
+      ],
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "${workspaceRoot}\\typescript\\node_modules\\ts-node\\register",
+      ],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
   ]
 }
