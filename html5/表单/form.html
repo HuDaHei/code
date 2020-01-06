@@ -13,24 +13,28 @@
     </style>
 </head>
 <body>
-    <form action="">
-        <input type="email" required>
+    <form action="" id="formx">
+        <!-- <input type="email">
         <input type="url">
         <input type="range">
         <input type="number">
         <input type="color">
         <input type="date">
-        <input type="datetime">
-        <input type="search">
-        <input type="text" autofocus>
-        <input pattern="/^[1-9][0-9]*$/" title="我滴天">
-        <p  id="contentp">sdfsd</p>
+        <input type="datetime" readonly>
+        <input type="search"> -->
+        <input type="text" size="20" id="select" value="xxxx">
+        <!-- <input pattern="/^[1-9][0-9]*$/" title="我滴天">
+        <p  id="contentp">sdfsd</p> -->
         <button>提交</button>
+        <!-- <input type="reset"></form> -->
+        <button type="reset">Reset Form</button>
     </form>
     <button id="from-btn">内容</button>
 </body>
 <script>
 let x =  $('#contentp');
+const formDom = $('#formx');
+console.log(formDom, 'formDom')
 x.click(function(event){
     this.setAttribute('contenteditable', true);
     x.focus();
@@ -40,6 +44,15 @@ $('#from-btn').click(function(event){
 })
 x.blur(function(){
     console.log("提交数据")
+})
+// select input 选择事件
+const inputDom = $('#select');
+console.log(inputDom, 'inputDom')
+inputDom.focus(function(e){
+    const target = e.target;
+    console.log(e)
+    target.select();
+    // target.setSelectionRange(0,2)
 })
 </script>
 </html>
