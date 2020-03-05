@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>keyframes </title>
+  <style>
+    @keyframes move {
+      0% {
+        left: 0;
+      }
+      30% {
+        top: 100px;
+      }
+      50% {
+        left: 100px;
+      }
+      70% {
+        left: 100px;
+      }
+      100% {
+        top: 0;
+      }
+    }
+    @keyframes move2 {
+      0% {
+        left: 0;
+      }
+      30% {
+        top: -100px;
+      }
+      50% {
+        left: 100px;
+      }
+      70% {
+        left: 100px;
+      }
+      100% {
+        top: 0;
+      }
+    }
+    .animation {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 42px;
+      height: 42px;
+      border: 1px solid red;
+    }
+    .animation1 {
+      animation: move 6s ease;
+    }
+    .animation2 {
+      animation: move2 6s ease;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 100vh;
+      width: 100vw;
+    }
+    .box {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="box">
+    <div class="animation animation1">
+    </div>
+    <div class="animation animation2">
+    </div>
+  </div>
+</div>
+</body>
+</html>

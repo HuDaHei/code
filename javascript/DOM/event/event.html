@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <span>事件--用户或者浏览器发生特定交互的动作</span>
+  <span>可以通过侦听器来注册事件 原理是观察者模式，实现html与js的解耦</span>
+  <div></div>
+  <span>事情流--从页面接收事件的顺序</span>
+  <span>同心圆</span>
+  <span>事件模型</span>
+  <span>IE 提出事件冒泡模型,事件从里到外</span>
+  <span>网景 提交事件捕获模型 事件从外到里</span>
+  <span>事件注册</span>
+  <span>HTML级事件注册</span>
+  <span>DOM0级事件注册</span>
+  <span>DOM2级事件注册</span>
+  <p>事件对象</p>
+  <span>兼容DOM级的浏览器会在事件处理程序中传入一个event对象</span>
+  <span>IE 这把event对象挂载在window对象身上</span>
+  <p>事件类型</p>
+  <span>UI事件--用户与页面上的元素交互时触发</span>
+  <span>鼠标事件--用户通过鼠标触发的交互</span>
+  <span>焦点事件--元素获取焦点或者失去焦点</span>
+  <span>文本事件--文档中输入文本触发</span>
+  <span>键盘事件--通过键盘触发的事件</span>
+  <span>合成事件</span>
+  <span>变动事件--dom结构发生改变触发的事件</span>
+  <p>内存与性能</p>
+  <span>注册事件是会消耗大量内存的，可以采用事件模型的特点 使用事件委托</span>
+  <span>不用的事件要及时注销dom2之前可以给注册的事件设置null dom2可以通过removeListenter来注销事件</span>
+  <p>事件模拟</p>
+  <span>通过createEvent创建事件对象 initEvent 初始化事件 dispatch来触发事件</span>
+  <button id="btn">我是一个按钮</button>
+  <input type="text" id="add">
+  <script>
+    const btnDom = document.getElementById("btn");
+    btnDom.addEventListener('click',(e)=>{
+      console.log(e,'e')
+    })
+    const clickEvent = document.createEvent("UIEvent");
+    clickEvent.initEvent("click", true, true, document.defaultView, 0, 0, 0, 0, 0, 
+ false, false, false, false, 0, null);
+ btnDom.dispatchEvent(clickEvent);
+    // 监听键盘的事件
+    document.addEventListener('keydown', e => {
+      console.log(e);
+    })
+    const inputDom = document.getElementById('add');
+    inputDom.focus();
+    const keyEvent = document.createEvent('keyboardEvent');
+    keyEvent.initKeyboardEvent('keydown',true, true, document.defaultView, 'a',0, "", 0);
+    inputDom.dispatchEvent(keyEvent)
+  </script>
+</body>
+</html>
