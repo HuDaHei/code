@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>before</title>
+    <style>
+        p {
+            background-color: aquamarine;
+        }
+        p:empty::before{
+            content: attr(data-tip);
+            /* content: open-quote; */
+        }
+        div::before {
+            content: close-quote;
+        }
+    </style>
+</head>
+<body>
+    <!--模拟输入框 -->
+    <p contenteditable="true" data-tip="请输入"></p>
+    <div></div>
+</body>
+</html>

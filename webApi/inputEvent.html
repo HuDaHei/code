@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="test">kkkk</div>
+    <input type="text" id="inputx">
+    <script>
+        const elem = document.getElementById('test');
+        const dom = document.getElementById('inputx');
+        const ev = new Event("look", { "bubbles": true, "cancelable": false });
+        window.addEventListener('input', e => {
+            console.log(e, 'input')
+        })
+        document.dispatchEvent(ev);
+        //
+        const evt = new InputEvent('input', {
+            inputType: 'insertText',
+            data: '222',
+            dataTransfer: null,
+            isComposing: false
+        });
+        // var event = document.createEvent("HTMLEvents"); 
+        //     event.initEvent("input", true, false, 'kkk'); 
+        // dom.value = '222'
+        // 事件可以在任何元素触发，不仅仅是document
+        elem.addEventListener('click', e => {
+            elem.dispatchEvent(ev);
+            dom.dispatchEvent(evt);
+            // dom.dispatchEvent(event);
+
+
+        })
+        elem.addEventListener('look', e => {
+            console.log(e, 'e')
+        })
+        elem.click();
+        // const dom = document.getElementById('test');
+        // const event = document.createEvent('UIEvent');
+        // event.initUIEvent('input',true, true, window, 1);
+        // dom.dispatchEvent(event);
+        // const event = function (dom, st) {
+        //     var evt = new InputEvent('input', {
+        //         inputType: 'insertText',
+        //         composed: true,
+        //         dataTransfer: null,
+        //         isComposing: false
+        //     });
+        //     dom.dispatchEvent(evt);
+        // }
+        // window.addEventListener('input', e => {
+        //     console.log(e, 'kkk')
+        // })
+        // event(dom, 'kkk')
+    </script>
+</body>
+
+</html>
