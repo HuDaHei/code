@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="bubling">事件冒泡
+        <div>
+            <div>
+                <div></div>
+                <div id="capture">事件捕获</div>
+                <div onclick="htmlEvet(event)">HTML事件程序</div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <button id="jc">加粗</button>
+    <div id="edit" style="height: 50px;border:1px solid #ccc;" contenteditable></div>
+    <script>
+        // 
+        const callback = (mutationList) => {
+            console.log('mutation')
+        }
+        const config = {
+            childList: true,
+            subtree: true
+        }
+        const observer = new MutationObserver(callback);
+        observer.observe(document, config)
+        const bubling = document.querySelector('#bubling');
+        const capture = document.querySelector('#capture');
+        const htmlEvet = (event) => {
+            console.log(event, 'event')
+        }
+        const addDom = (father) => {
+            const div = document.createElement('div')
+            div.innerText = 'hahhaha'
+            father.append(div)
+        }
+        bubling.addEventListener('click', (e) => {
+            addDom(e.target)
+            console.log(e, 'bubling')
+        }, false)
+        capture.addEventListener('click', (e) => {
+            addDom(e.target)
+            console.log(e, 'capture')
+        }, true)
+        console.log('加载中')
+        window.addEventListener('load', ()=> {
+            console.log('ui加载完毕')
+        })
+        document.addEventListener('unload',() => {
+            alert('页面被卸载')
+        })
+        // 模拟事件
+        setTimeout(()=> {
+            const mClick = document.createEvent('MouseEvents');
+            mClick.initMouseEvent("click", true, true, document.defaultView, 0, 0, 0, 100, 10, 
+            false, false, false, false, 0, null);
+            capture.dispatchEvent(mClick)
+        }, 3000)
+        // 富文本
+        const editDom = document.querySelector('#edit');
+        const jc = document.querySelector('#jc');
+        jc.addEventListener('click', () => {
+            document.execCommand("bold", false, null);
+            document.execCommand("formatblock", false, "<h1>");
+            document.execCommand("createlink", false, 
+                "http://www.wrox.com");
+        })
+    </script>
+</body>
+
+</html>

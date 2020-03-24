@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+    // window.addEventListener('error',function(e){
+    //     console.log(e, 'e')
+    // })
+    function loadLinkFaild() {
+        alert('link没有正确加载')
+    }
+    function loadLinkFaildNext() {
+        alert('link没有正确加载next')
+    }
+</script>
+<!-- 错误link地址 -->
+<link href="https://cdn.bootcss.com/animate.css/3.7.2/animatesss.css" rel="stylesheet" onerror="loadLinkFaild()">
+<!-- 正确的link地址 error事件不会被触发-->
+<link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.css" rel="stylesheet" onerror="loadLinkFaildNext()">
+</head>
+<body>
+</body>
+</html>
