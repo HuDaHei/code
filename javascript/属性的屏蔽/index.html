@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const myObjPrototype = {
+            a: 100
+        }
+        const temp = Object.create(myObjPrototype)
+        temp.a = 101;
+        // 这里其实 myObjPrototype中的a的属性并不会被修改
+        // 而是在temp这个对象身上重新添加一个属性a
+        // 根据属性查找规则 myObjPrototype身上的a永远不会被取值 间接被屏蔽了
+        // 这里没有考虑严格模式 
+        console.log(temp, 'temp')
+
+    </script>
+</body>
+</html>
