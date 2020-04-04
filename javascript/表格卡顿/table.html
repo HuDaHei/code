@@ -34,7 +34,7 @@
         }
     </style>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <div id="dataFixedleft">
             <table border="1" id="fixedLeft">
                 <thead id="headerLeft"></thead>
@@ -129,13 +129,6 @@
                     thDiv.innerText = attribute;
                     th.appendChild(thDiv)
                     documentFrameHeadeRight.appendChild(th);
-                    // 内容
-                    // rows.forEach(r => {
-                    //     const td = document.createElement('td');
-                    //     td.innerText = r[attribute];
-                    //     tr.appendChild(td);
-                    // });
-                    // documentFrameContentLeft.appendChild(tr);
                 });
                   rows.forEach(r => {
                         const tr = document.createElement('tr');
@@ -172,6 +165,14 @@
                 });
                 rows.forEach(r => {
                         const tr = document.createElement('tr');
+                        // 添加每行的背景色
+                        tr.addEventListener('mouseenter', e => {
+                            e.target.style.cssText = 'background:skyblue;'
+                        })
+                        tr.addEventListener('mouseleave', e => {
+                            e.target.style.cssText = 'backgorund:""';
+                        })
+                        //
                         normalCloumn.forEach(c => {
                             const td = document.createElement('td');
                             td.innerText = r[c.attribute];

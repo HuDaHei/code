@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const task = {
+            setID(ID){
+                this.id = ID
+            },
+            outputID(){
+                console.log(this.id)
+            }
+        };
+        // one 委托task
+        const one = Object.create(task);
+        one.prepareTask = function (ID,label){
+            this.setID(ID);
+            this.label = label;
+        }
+        one.outputTask = function () {
+            this.outputID();
+            console.log(this.label)
+        }
+
+        one.prepareTask(5, 'x');
+        one.outputTask();
+    </script>
+</body>
+</html>
