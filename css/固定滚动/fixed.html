@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 40vw;
+            height: 60vh;
+            overflow: scroll;
+            margin: 0 auto;
+
+        }
+        #body_container{
+            width: 50vw;
+            margin: 0 auto;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="control">
+        <button id="hiddenX">隐藏X滚动条</button>
+        <button id="hiddenY">隐藏Y滚动条</button>
+        <button id="showX">显示X滚动条</button>
+        <button id="showY">显示Y滚动条</button>
+    </div>
+    <!-- body -->
+    <div id="container">
+        <div id="body_container">
+        
+        </div>
+    </div>
+    <script>
+        // 假数据
+        const documentFragement = new DocumentFragment();
+        for(let i = 0; i< 1000; i++) {
+            const div = document.createElement('div')
+            div.innerText = "我是徐困我是徐困我是徐困我是徐困我是徐困我是徐困我是徐困我是徐困我是徐困我是徐困我是徐困我是徐困" + i;
+            documentFragement.appendChild(div)
+        }
+        const bodyContainer = document.querySelector("#body_container");
+        bodyContainer.appendChild(documentFragement);
+        // 假数据end
+        const container = document.querySelector("#container");
+
+        const hiddenX = document.querySelector("#hiddenX");
+        const hiddenY = document.querySelector("#hiddenY");
+        
+        hiddenX.addEventListener("click", e => {
+            container.style = "overflow-x:hidden"
+        })
+        hiddenY.addEventListener("click", e => {
+            container.style = "overflow-y:hidden"
+        })
+        showX.addEventListener("click", e => {
+            container.style = "overflow-x:scroll"
+        })
+        showY.addEventListener("click", e => {
+            container.style = "overflow-y:scroll"
+        })
+    </script>
+</body>
+</html>

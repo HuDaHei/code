@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    嘻嘻！我是a标签
+    <script>
+        const aLink = document.createElement('a');
+        aLink.href = 'www.baidu.com?name=age';
+        aLink.id = 'alink';
+        aLink.innerText ="kkkk"
+        console.log(aLink.search, "search")
+        console.log(aLink.pathname, "search")
+        console.log(aLink, "aLink")
+        document.body.appendChild(aLink)
+        console.info(document.querySelector("#alink"))
+    </script>
+</body>
+</html>

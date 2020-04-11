@@ -32,26 +32,45 @@
             overflow-y: hidden;
             height: 7400px;
         }
+        .header{
+            background-color: cadetblue;
+            position: relative;
+        }
+        .header_container{
+            position: absolute;
+            height: 40px;
+        }
     </style>
 <body>
-    <div class="container" id="container">
-        <div id="dataFixedleft">
-            <table border="1" id="fixedLeft">
-                <thead id="headerLeft"></thead>
-                <tbody id="tbodyLeft"></tbody>
-            </table>
+    <div style="width: 80vw;height: 80vh;margin: auto;">
+        <!-- header -->
+        <div class="header">
+            <div class="header_container">
+                <div class="header_left"></div>
+                <div class="header_static"></div>
+                <div class="header_right"></div>
+            </div>
         </div>
-        <div class="static">
-            <table border="1" id="content">
-                <thead id="header"></thead>
-                <tbody id="tbody"></tbody>
-            </table>
-        </div>
-        <div id="dataFixedRight">
-            <table border="1" id="dataFixedRight">
-                <thead id="headerRight"></thead>
-                <tbody id="tbodyRight"></tbody>
-            </table>
+        <!-- body -->
+        <div class="container" id="container">
+            <div id="dataFixedleft">
+                <table border="1" id="fixedLeft">
+                    <thead id="headerLeft"></thead>
+                    <tbody id="tbodyLeft"></tbody>
+                </table>
+            </div>
+            <div class="static">
+                <table border="1" id="content">
+                    <thead id="header"></thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+            <div id="dataFixedRight">
+                <table border="1" id="dataFixedRight">
+                    <thead id="headerRight"></thead>
+                    <tbody id="tbodyRight"></tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script>
