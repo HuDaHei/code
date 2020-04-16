@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- https://clients2.google.com/service/update2/crx
+        ?response=redirect
+        &prodversion=[80.0.3987.163]
+        &acceptformat=crx2,crx3
+        &x=id%3D[ihamffgnjihmnlobejobbighnpcfblmh]%26uc -->
+
+    <form>
+        <label>浏览器版本</label><input type="text" required id="prodversion" style="width: 250px">
+        <label>插件ID</label><input type="text" required id="ID" style="width: 250px;">
+    </form>
+    <button id="download">下载</button>
+
+    <script>
+        const prodversion = document.querySelector("#prodversion");
+        const iddom = document.querySelector("#ID");
+        // 获取浏览器版本
+        function getExplore() {
+            var Sys = {};
+            var ua = navigator.userAgent.toLowerCase();
+            var s;
+            (s = ua.match(/rv:([\d.]+)\) like gecko/)) ? Sys.ie = s[1] :
+                (s = ua.match(/msie ([\d\.]+)/)) ? Sys.ie = s[1] :
+                    (s = ua.match(/edge\/([\d\.]+)/)) ? Sys.edge = s[1] :
+                        (s = ua.match(/firefox\/([\d\.]+)/)) ? Sys.firefox = s[1] :
+                            (s = ua.match(/(?:opera|opr).([\d\.]+)/)) ? Sys.opera = s[1] :
+                                (s = ua.match(/chrome\/([\d\.]+)/)) ? Sys.chrome = s[1] :
+                                    (s = ua.match(/version\/([\d\.]+).*safari/)) ? Sys.safari = s[1] : 0;
+            // 根据关系进行判断
+            if (Sys.ie) return (Sys.ie);
+            if (Sys.edge) return (Sys.edge);
+            if (Sys.firefox) return (Sys.firefox);
+            if (Sys.chrome) return (Sys.chrome);
+            if (Sys.opera) return (Sys.opera);
+            if (Sys.safari) return (Sys.safari);
+            return 'Unkonwn';
+        }
+        //
+        const pro = getExplore();
+        prodversion.value = pro;
+        iddom.value = 'ihamffgnjihmnlobejobbighnpcfblmh'
+        const btn = document.querySelector("#download");
+        btn.addEventListener('click', e => {
+            const { value: proValue } = prodversion;
+            const { value: ID } = iddom;
+            if (proValue && ID) {
+                const alink = document.createElement("a")
+                const href = `https://clients2.google.com/service/update2/crx?response=redirect&prodversion=${proValue}&acceptformat=crx2,crx3&x=id%3D${ID}%26uc`
+                alink.href = href;
+                alink.click();
+            }
+        })
+    </script>
+</body>
+
+</html>
