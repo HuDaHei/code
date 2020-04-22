@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // toString
+        const temp = {
+            name: 'hanjun'
+        }
+        console.log(temp.toString())
+        console.log(temp.valueOf(), "valueOf")
+        const tempNull = null;
+        let tempUndefined;
+        console.log(Object.prototype.toString.apply(tempUndefined),'tempUndeined')
+        console.log(Object.prototype.toString.apply(tempNull),'tempNull')
+
+
+    </script>
+</body>
+</html>
