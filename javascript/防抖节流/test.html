@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 防抖 一段时间内只执行一次
+        const debounce = (fn, delay) => {
+            let time;
+            return function () {
+                if (time) {
+                    clearTimeout(time)
+                }
+                time = setTimeout(() => {
+                    fn();
+                }, delay)
+            }
+        }
+        const func = () => {
+            console.log("debounce")
+        }
+        // window.addEventListener('resize', debounce(func, 200))
+
+        // 节流 持续执行的事件 间隔一定时间执行一次
+        const throttle = (fn, delay) => {
+            let time;
+            return function () {
+                if (!time) {
+                    time = setTimeout(() => {
+                        time = null
+                        fn()
+                    }, delay)
+                }
+            }
+        }
+        const throttleFun = () => {
+            console.log('throttle')
+        }
+        window.addEventListener('resize', throttle(throttleFun, 1100))
+
+
+    </script>
+</body>
+
+</html>
