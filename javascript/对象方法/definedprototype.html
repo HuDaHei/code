@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // configurable
+        const temp = {
+            name: 'hu',
+            age: 18
+        };
+        Object.defineProperty(temp ,'name',{
+            // configurable: false,
+            // writable: false,
+            // enumerable:false,
+            get:function() {
+                console.log("get")
+                return 'get'
+            },
+            // value: 'name'
+        });
+        temp.name = 'definePrototype';
+        console.log(temp.name, "temp")
+
+        for(const key in temp) {
+            console.log(key, "key")
+        }
+
+
+    </script>
+</body>
+</html>

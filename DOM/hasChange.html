@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <button id="addBtn">pushState</button>
+   <button id="addReplace">replaceState</button>
+   <script>
+       const addBtnDom = document.querySelector('#addBtn');
+       const addReplaceDom = document.querySelector("#addReplace");
+       addReplaceDom.addEventListener('click', e => {
+           const state = {name: 'replace'}
+           window.history.replaceState(state, 'replace', '/DOM/hasChange.html')
+       })
+       addBtnDom.addEventListener('click', e => {
+           const state= {name:'test'};
+            window.history.pushState(state,'','/DOM/event.html')
+       })
+       window.addEventListener('hashchange', e => {
+        console.log(e, 'e')
+       })
+       window.addEventListener('popState', e => {
+        console.log(e, 'e')
+       })
+   </script>
+</body>
+</html>
