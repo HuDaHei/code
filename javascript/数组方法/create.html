@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // create Array
+        const newArr = new Array('3',4,6);
+        const newArr3 = new Array(3);
+        console.log(newArr, "newArr")
+        console.log(newArr3, "newArr3")
+        const newArr5 = [];
+        newArr5.length = 9;
+        console.log(newArr.toString())
+        console.log(Object.prototype.toString.call(newArr5))
+
+        const temp = [];
+        console.log("--------------数组方法")
+           temp.push("push");
+           temp.unshift("shift");
+           console.log(temp, "temp")
+        console.log("--------------")
+        const temps = ['push','shfit']
+        temps.pop();
+        temps.shift();
+        console.log(temps, "temps")
+        console.log("******")
+        const tempx = ["www", "google", "com"];
+        console.log(tempx.slice(1), "slice"); // 
+        console.log(tempx, "slice"); // 
+        console.log(tempx.splice(1)); //
+        console.log(tempx, "splice"); // 
+        console.log("-----sort----")
+        const newSort = [1,2,34,5,55,4,32,23,3,0];
+        const tempSort = newSort.sort((a,b)=>{
+            return a-b
+        })
+        console.log(newSort)
+        console.log(tempSort)
+        console.log(newSort.some(v => {
+            return v > 99999
+        }), "some");
+        console.log(newSort.every(v => {return v > 8}), 'every');
+        console.log(newSort.includes(2), 'includes');
+        console.log(temp.reverse(), "reverse");
+        console.log(temp.concat(newSort), 'concat');
+        const copyTemp = temp.concat(); // 深拷贝
+        copyTemp.push('concat');
+        console.log(copyTemp, "copyTemp"); 
+        console.log(temp, "temp");
+        console.log("------------*****");
+        const tempSlice = [1,2,3,4,5,6,7];
+        const copyTempSlice = tempSlice.slice(-2,-1); //如果index是负数 那么后续的参数只能是负数并且不能小于第一个参数
+        tempSlice.splice(2,0, 'splice')
+        console.log(tempSlice, "tempSlice");
+
+        console.log(tempSlice.indexOf(2), 'indexof')
+        console.log(tempSlice.lastIndexOf(2), 'lastIndexOf')
+        console.log(tempSlice.filter(v => { return v > 5}), 'filter');
+
+        console.log(tempSlice.reduce((pre,cur)=>{
+            return pre+cur;
+        }),'reduce')
+    </script> 
+</body>
+</html>

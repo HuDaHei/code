@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const test = {
+            name: 'hanjun',
+            age: 18
+        }
+        const newTest = Object.create(test);
+        console.log(newTest, 'newTest');
+        const newTestTwo = {};
+        Reflect.setPrototypeOf(newTestTwo, test);
+        console.log(newTestTwo, 'newTestTwo');
+        // 如果从形式上来说 create 是创造一个对象
+        //setprototypeof 是修改一个对象的原型
+
+        //功能都是一样的 性能可能有差距没测试
+    </script>
+    
+</body>
+</html>

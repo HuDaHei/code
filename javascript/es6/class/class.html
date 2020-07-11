@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>我是一个类</div>
+    <script>
+        class ClassWidthStaticFiled {
+            static name = "static"
+            static getName() {
+                console.log("getName")
+            }
+            getNamePublic() {
+                ClassWidthStaticFiled.getName();
+            }
+        }
+        const staticInstace = new ClassWidthStaticFiled();
+        console.log(staticInstace, "staticInstance")
+        staticInstace.getNamePublic();
+
+    </script>
+</body>
+</html>

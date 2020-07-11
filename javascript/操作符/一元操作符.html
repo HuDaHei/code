@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function preAdd() {
+            let count = 1;
+            const temp = count++; // 先复制 后自增
+            return temp;
+        }
+        console.log(preAdd(), 'preAdd');
+        function lastAdd() {
+            let count = 1;
+            const temp = ++count; // 先自增 后赋值
+            return temp;
+        }
+        console.log(lastAdd(), "lastAdd")
+
+        let tempStr = "2";
+        console.log(++tempStr)
+    </script>
+</body>
+</html>

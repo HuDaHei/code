@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        .container{
+            overflow-y: scroll;
+            margin: auto;
+            width: 80vw;
+            height: 80vh;
+            display: flex;
+            position: relative;
+        }
+        table{
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+        td {
+            height: 70px;
+        }
+        #dataFixedleft{
+            /* position: absolute; */
+            background-color: #fff;
+        }
+        .static{
+            /* margin-left: 220px; */
+            overflow-x: scroll;
+            overflow-y: hidden;
+            height: 7400px;
+        }
+        .header{
+            background-color: cadetblue;
+            position: relative;
+        }
+        .header_container{
+            position: absolute;
+            height: 40px;
+        }
+    </style>
+<body>
+    <div style="width: 80vw;height: 80vh;margin: auto;">
+        <!-- header -->
+        <div class="header">
+            <div class="header_container">
+                <div class="header_left"></div>
+                <div class="header_static"></div>
+                <div class="header_right"></div>
+            </div>
+        </div>
+        <!-- body -->
+        <div class="container" id="container">
+            <div id="dataFixedleft">
+                <table border="1" id="fixedLeft">
+                    <thead id="headerLeft"></thead>
+                    <tbody id="tbodyLeft"></tbody>
+                </table>
+            </div>
+            <div class="static">
+                <table border="1" id="content">
+                    <thead id="header"></thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+            <div id="dataFixedRight">
+                <table border="1" id="dataFixedRight">
+                    <thead id="headerRight"></thead>
+                    <tbody id="tbodyRight"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            if (xhr.status == 200 && xhr.readyState == 4) {
+                const data = JSON.parse(xhr.response).data;
+                const rows = data.rows;
+                const cloumn = Object.keys(rows[0]).map((r,index)=>  {
+                   if(index == 2 || index == 3 || index == 4) {
+                       return {
+                           attribute: r,
+                           type: 'fixed-right',
+                           width: '25px'
+                       }
+                   }
+                   return {
+                        attribute: r,
+                        type: index == 0 || index == 1 ? 'fixed-left': 'normal',
+                        width: index == 0 || index ==1 ? '25px': '30px',
+                   }
+                });
+                const leftCloumn = cloumn.filter(c => c.type == 'fixed-left');
+                const normalCloumn = cloumn.filter(c => c.type == 'normal');
+                //表头
+                const documentFrameHeader = new DocumentFragment();
+                const documentFrameContent = new DocumentFragment();
+                //fixed left
+                const documentFrameFixedLeft = new DocumentFragment();
+                const documentFrameHeaderLeft = new DocumentFragment();
+                const documentFrameContentLeft = new DocumentFragment();
+                console.log(leftCloumn, '')
+                leftCloumn.forEach(lc => {
+                    const th = document.createElement('th');
+                    const tr = document.createElement('tr');
+                    const thDiv = document.createElement('div')
+                    const attribute =  lc.attribute;
+                    const type = lc.type;
+                    thDiv.innerText = attribute;
+                    th.appendChild(thDiv)
+                    documentFrameHeaderLeft.appendChild(th);
+                    // 内容
+                    // rows.forEach(r => {
+                    //     const td = document.createElement('td');
+                    //     td.innerText = r[attribute];
+                    //     tr.appendChild(td);
+                    // });
+                    // documentFrameContentLeft.appendChild(tr);
+                });
+                  rows.forEach(r => {
+                        const tr = document.createElement('tr');
+                        leftCloumn.forEach(c => {
+                            const td = document.createElement('td');
+                            td.innerText = r[c.attribute];
+                            tr.appendChild(td);
+                        })
+                        documentFrameContentLeft.appendChild(tr);
+                    });
+                const headerleft = document.querySelector("#headerLeft");
+                const contentleft = document.querySelector("#tbodyLeft");
+                headerleft.appendChild(documentFrameHeaderLeft);
+                contentleft.appendChild(documentFrameContentLeft);
+                //right
+                const rightCloumn = cloumn.filter(c => c.type == 'fixed-right');
+                console.log(rightCloumn, 'right')
+                const documentFrameFixedRight = new DocumentFragment();
+                const documentFrameHeadeRight = new DocumentFragment();
+                const documentFrameContentRight = new DocumentFragment();
+                rightCloumn.forEach(lc => {
+                    const th = document.createElement('th');
+                    const tr = document.createElement('tr');
+                    const thDiv = document.createElement('div')
+                    const attribute =  lc.attribute;
+                    const type = lc.type;
+                    thDiv.innerText = attribute;
+                    th.appendChild(thDiv)
+                    documentFrameHeadeRight.appendChild(th);
+                });
+                  rows.forEach(r => {
+                        const tr = document.createElement('tr');
+                        rightCloumn.forEach(c => {
+                            const td = document.createElement('td');
+                            td.innerText = r[c.attribute];
+                            tr.appendChild(td);
+                        })
+                        documentFrameContentRight.appendChild(tr);
+                    });
+                const headerRight = document.querySelector("#headerRight");
+                const contentRight = document.querySelector("#tbodyRight");
+                headerRight.appendChild(documentFrameHeadeRight);
+                contentRight.appendChild(documentFrameContentRight);
+                ///////////
+                normalCloumn.forEach(c => {
+                    const th = document.createElement('th');
+                    const tr = document.createElement('tr');
+                    const thDiv = document.createElement('div')
+                    const attribute =  c.attribute;
+                    const type = c.type;
+                    thDiv.innerText = attribute;
+                    // th.style.cssText = `width:${c.width};position:relative`;
+                    // thDiv.style.cssText = `position:${c.type};width:${c.width}`
+                    th.appendChild(thDiv)
+                    documentFrameHeader.appendChild(th);
+                    // 内容
+                    // rows.forEach(r => {
+                    //     const td = document.createElement('td');
+                    //     td.innerText = r[attribute];
+                    //     tr.appendChild(td);
+                    // });
+                    // documentFrameContent.appendChild(tr);
+                });
+                rows.forEach(r => {
+                        const tr = document.createElement('tr');
+                        // 添加每行的背景色
+                        tr.addEventListener('mouseenter', e => {
+                            e.target.style.cssText = 'background:skyblue;'
+                        })
+                        tr.addEventListener('mouseleave', e => {
+                            e.target.style.cssText = 'backgorund:""';
+                        })
+                        //
+                        normalCloumn.forEach(c => {
+                            const td = document.createElement('td');
+                            td.innerText = r[c.attribute];
+                            tr.appendChild(td);
+                        })
+                        documentFrameContent.appendChild(tr);
+                    });
+                const header = document.querySelector("#header");
+                const content = document.querySelector("#tbody");
+                header.appendChild(documentFrameHeader);
+                content.appendChild(documentFrameContent);
+            }
+        }
+        xhr.open('GET', './data.json', true);
+        xhr.send(null);
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

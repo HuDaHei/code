@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <span id="app" data-jubu="jubu">我是局部</span>
+    <script>
+        document.addEventListener('click', (e) => {
+            const target = e.target;
+            const dataJubu = target.getAttribute('data-jubu');
+            if(dataJubu !== 'jubu') {
+                // 全局的
+                alert('我是全局触发')
+            }
+        });
+        //
+        document.querySelector("#app").addEventListener('click', e => {
+            alert("我是局部触发")
+        })
+    </script>
+</body>
+
+</html>

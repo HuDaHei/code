@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let tempNumber = 4;
+        // 100
+        console.log(tempNumber.toString(2))
+        console.log(4>>2, "右移")
+        // NOT
+        console.log(~4, "NOT")
+        //AND
+        const tempAnd = 34;
+        console.log(tempAnd.toString(2), "and");
+        console.log(tempAnd & tempNumber)
+        // << 左移
+        console.log(tempAnd << 2, "<<")
+        // >> 右移
+        console.log(tempNumber >> 5)
+        // 判断奇偶数
+        const tempSet = new Set([1,2,3,45,4,5,445,44,77,88,99,678]);
+        const tempArr = tempSet.values();
+        for(const v of tempSet) {
+            if(v & 1) {
+                console.log(v,"是个奇数")
+            }else {
+                console.log(v,"是个偶数")
+            }
+        }
+        //
+        const  a = +2;
+        const b = 2;
+        console.log(a*b)
+    </script> 
+</body>
+</html>
