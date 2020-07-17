@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 检查构造函数的prototype是否出现在某个实例的对象的原型链上
+        function Test() {
+            this.name = 'kkkk'
+        }
+        const testInstance = new Test()
+        console.log(testInstance instanceof Test, 'testInstance')
+        function instanceofCopy() {}
+    </script>
+</body>
+</html>

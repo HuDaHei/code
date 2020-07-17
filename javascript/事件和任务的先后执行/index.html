@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 任务队列 是基于js引擎自身的异步
+        // 事件循环 是基于宿主环境让js引擎在不同时间执行js代码的伪异步
+        setTimeout(()=> {
+            console.log('A')
+        })
+      
+        const testPromise = new Promise((resolve)=> {
+            console.log('B')
+            setTimeout(()=>{
+                console.log('C')
+                resolve('D')
+            })
+            const test = new Promise(()=> {
+                console.log('E')
+            })
+        }).then(res => {
+            console.log('F')
+        })
+        console.log('G')
+    </script>
+</body>
+</html>

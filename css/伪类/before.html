@@ -19,7 +19,23 @@
 </head>
 <body>
     <!--模拟输入框 -->
-    <p contenteditable="true" data-tip="请输入"></p>
+    <p contenteditable="false" data-tip="请输入" id="ptag"></p>
     <div></div>
+    <script>
+        const pDom = document.querySelector('#ptag');
+        let count = 1;
+        pDom.addEventListener('click', e => {
+           const target =  e.target
+           
+           const time = setInterval(() => {
+            if(count < 10000) {
+                count+= 20
+               target.setAttribute('data-tip', count)
+            }else {
+                clearInterval(time)
+            }
+           }, 100);
+        })
+    </script>
 </body>
 </html>
