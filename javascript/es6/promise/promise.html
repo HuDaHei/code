@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <script>
+    <!-- <script>
         // let hasfun = new Promise(function (reslove, reject) {
         //     let x = "10";
         //     const OK = false;
@@ -66,6 +66,59 @@
         }
 
         run(g);
+    </script> -->
+    <script>
+
+        const p = new Promise((resolve, reject)=>{
+            resolve('k')
+        })
+        p.then(function() {
+            p.then(function() {
+                console.log('C')
+            })
+            console.log('A')
+        })
+        p.then(function() {
+            console.log('B')
+        })
+        console.log(p)
+        console.log('-------- ')
+        const np = new Promise((resolve, reject)=> {
+            setTimeout(() => {
+                console.log('1')
+                resolve('1')
+            })
+        });
+        np.then(res=>{
+            let count = 2
+            setTimeout(() => {
+                count++
+            })
+            console.log(count, 'count')
+            console.log(res, 'count') // 1
+            return count
+        }).then( res => {
+            console.log(res , 'kk')
+        })
+        np.then( res => {
+            console.log(res, 'res') // 1
+        });
+        console.log('***********')
+        const ep = new Promise((resolve, reject)=> {
+            setTimeout(()=> {
+                resolve('A')
+            })
+        });
+        ep.then(res => {
+            throw new Error('I is a Error')
+        }).then(res=> {
+            console.log('我不会被打印')
+        }, reject => {
+            return 'error'
+        }).then(res => {
+            console.log(res, 'error')
+        });
+        console.log('*****');
     </script>
 </body>
 

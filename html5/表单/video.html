@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+</head>
+<body>
+<video autoplay loop id="myVideo">
+<source src="http://www.leoog.com/wp-content/uploads/2017/07/leoog_13934734.mp4" type="video/mp4">
+</video>
+<video autoplay loop id="myVideo">
+<source src="http://www.runoob.com/try/demo_source/mov_bbb.mp4" type="video/mp4">
+</video>
+<script type="text/javascript">
+document.getElementById("myVideo").addEventListener("loadeddata", function() {
+if (typeof this.webkitAudioDecodedByteCount || this.mozHasAudio || this.audioTracks !== "undefined") {
+if (this.webkitAudioDecodedByteCount > 0 || this.mozHasAudio || this.audioTracks && this.audioTracks.length)
+this.after("有声");
+else
+this.after("没声");
+}
+});
+</script>
+</body>
+</html>

@@ -14,6 +14,7 @@ class HelloWord extends HTMLElement {
 
         this.fetchData()
         this.customEvent()
+        this.watchProp()
     }
     fetchData() {
         const XHR = new XMLHttpRequest()
@@ -38,6 +39,17 @@ class HelloWord extends HTMLElement {
             document.dispatchEvent(event)
         })
         console.log('kkkkk')
+    }
+    watchProp() {
+        const cb = (mutationList, observe) => { console.log(mutationList, observe) }
+        var observerOptions = {
+            childList: true,  // 观察目标子节点的变化，是否有添加或者删除
+            attributes: true, // 观察属性变动
+            subtree: true     // 观察后代节点，默认为 false
+          }
+        const observeInstance = new MutationObserver(cb)
+        observeInstance.observe(this,observerOptions)
+
     }
 }
 customElements.define('hello-world', HelloWord)

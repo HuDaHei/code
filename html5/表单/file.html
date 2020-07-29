@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" id="file" />
+    <button id="btn">打印音轨</button>
+    <video src="" id="vide"></video>
+    <script>
+      const fileDom = document.getElementById("file");
+      const btnDom = document.getElementById("btn");
+      const videoDom = document.querySelector("#vide");
+      videoDom.addEventListener("canplay", (e) => {
+       setTimeout(() => {
+        console.log(
+          e.target.webkitAudioDecodedByteCount,
+          "音轨大小"
+        );
+       }, 100)
+      });
+      btnDom.addEventListener("click", function(e){
+        const viedo = fileDom.files[0];
+        const temp = new FileReader();
+        temp.onload = () => {
+          videoDom.setAttribute("src", temp.result);
+        };
+        temp.readAsDataURL(viedo);
+      });
+    </script>
+  </body>
+</html>
