@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" id="videoInput" />
+    <div style="margin-top:100px;">
+    <video id="videoX" style="height: 300px;width:300px;border: 1px solid red;"></video>
+
+    </div>
+    <script>
+      const uploadDom = document.querySelector("#videoInput");
+      const videoDom = document.querySelector("#videoX");
+      uploadDom.addEventListener("input", (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.addEventListener("load", (e) => {
+          videoDom.setAttribute("src", reader.result);
+        });
+        reader.readAsDataURL(file);
+      });
+      videoDom.addEventListener('mouseover', e => {
+          const target = e.target;
+          target.play()
+      });
+      videoDom.addEventListener('mouseout', e => {
+          const target = e.target;
+          target.pause()
+      });
+    </script>
+  </body>
+</html>
