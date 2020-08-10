@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="test">
+    <script>
+        const inputDom = document.querySelector('#test');
+        inputDom.addEventListener('input',  e => {
+            console.log(e, 'e')
+        });
+        console.log(event, 'event')
+        window.addEventListener('event', e => {
+            console.log(e, 'event')
+        });
+        const ev = new Event('allevent', { bubbles: true, cancelable: false});
+        window.addEventListener('allevent', e => {
+            console.log(e,'all')
+            e.__proto__.name = 'hanjun'
+        });
+        document.dispatchEvent(ev);
+    </script>
+</body>
+</html>

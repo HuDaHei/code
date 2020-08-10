@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/localforage/1.7.4/localforage.js"></script>
+</head>
+<body>
+    <div>我是localfroage</div>
+    <div>设置localforage的name</div>
+    <input type="text" id="name">
+    <button id="btnconfig">设置</button>
+    <div>-------获取值</div>
+    <button id="getValue">获取值</button>
+    <script>
+        const configBtnDom = document.querySelector('#btnconfig');
+        const inputTextDom = document.querySelector('#name');
+        const getLocalforageDom = document.querySelector('#getValue');
+        configBtnDom.addEventListener('click', e => {
+            const name = inputTextDom.value;
+            window.$_store = localforage.createInstance({
+                name: name
+            })
+            window.$_store.setItem('name', Math.random())
+            window.$_store.setItem('age', 18)
+        });
+        getLocalforageDom.addEventListener('click', () => {
+            window.$_store.getItem('name').then( res => {
+                console.log(res, 'res')
+            })
+        })
+        console.log('config')
+
+    </script>
+</body>
+</html>

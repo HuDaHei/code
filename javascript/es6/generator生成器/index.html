@@ -145,6 +145,33 @@
   let aync = asyncPrint();
   aync.next(); 
   // 
+  console.log('____')
+  function * inputV(){
+    const y = 6 * (yield)
+    return y
+  }
+  const inputNext = inputV();
+  console.log(inputNext.next(), 'inputNext')
+  console.log(inputNext.next(8), 'inputNext2')
+  function asyncFun() {
+    setTimeout(()=> {
+      console.log('00000')
+      itF.next('完成setTimeOut')
+    }, 1000)
+  }
+  function *testF(){
+    const y = yield asyncFun()
+    console.log(y, 'y')
+    return y
+  }
+  const itF = testF()
+  console.log(itF.next(),'1')
+  console.log(itF.next(),'2')
+
+
+
+  console.log('____')
+  
 </script>
 </body>
 </html>
