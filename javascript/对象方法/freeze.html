@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>freeze是否能影响共享对象或者说引用对象</title>
+</head>
+<body>
+    <SCript>
+      const refObj = {
+        age: '18'
+      }
+      const test = {
+        name: 'test',
+        refObj: refObj
+      }  
+      Object.freeze(test);
+      refObj['test'] = '我是测试';
+      console.log(refObj, 'refobj')
+      //test被冻结了 但是如果修改共享对象 test的共享对象也会被修改虽然没有修改test变相的修改了
+    </SCript>
+</body>
+</html>
