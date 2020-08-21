@@ -22,10 +22,12 @@
        }, 100)
       });
       btnDom.addEventListener("click", function(e){
+        console.log(fileDom.files, 'fileDom')
         const viedo = fileDom.files[0];
         const temp = new FileReader();
         temp.onload = () => {
           videoDom.setAttribute("src", temp.result);
+          console.log([videoDom])
         };
         temp.readAsDataURL(viedo);
       });
