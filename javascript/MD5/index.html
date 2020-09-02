@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.17.0/js/md5.js"></script>
+  </head>
+  <body>
+    <button id="btn">打印</button>
+    <button id="btns">打印2</button>
+    <div></div>
+    <p></p>
+    <script>
+      const temp = {
+        name: ["kkkk"],
+        age: {
+          name: ["kkkk"],
+        },
+      };
+      const btn = document.querySelector("#btn");
+      const btns = document.querySelector("#btns");
+      const print = document.querySelector("div");
+      const printP = document.querySelector("p");
+      btn.addEventListener("click", (e) => {
+        const temps = JSON.stringify(temp);
+        const hash = md5(temps);
+        printP.innerText = temps;
+        print.innerText = hash;
+        temp.name = "kk";
+      });
+      btns.addEventListener("click", (e) => {
+        const temps = JSON.stringify(temp);
+        const hash = md5(temps);
+        printP.innerText = temps;
+        print.innerText = hash;
+      });
+      const y = [
+        {
+          label: "横版大图",
+          type: '17:2'
+        },
+        {
+            lable:"横版小图",
+            type: '12:9'
+        }
+      ];
+    </script>
+  </body>
+</html>
