@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+
+
+
+        const test = { name: 'jack'};
+        const x = function(a,b){
+            return a.name
+        }
+        const y = function(a, b) {
+            return Reflect.get(a, 'name')
+        }
+        const g = 'jack'
+        
+        let x1 = 10000000
+        let vart0= performance.now();
+        while( x1 > 0) {
+            x(test, g)
+            x1--
+        }
+        let vart1= performance.now();
+        console.log(vart1 - vart0, 'var01')
+
+        let x2 = 10000000
+        let vart00= performance.now();
+        while( x2 > 0) {
+            y(test, g)
+            x2--
+        }
+        let vart11= performance.now();
+        console.log(vart11 - vart00, 'var0111111')
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
