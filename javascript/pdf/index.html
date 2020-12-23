@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/pdf.js/2.6.347/pdf.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/pdf.js/2.6.347/pdf.worker.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="theCanvas"></canvas>
+    <script>
+        var loadingTask = pdfjsLib.getDocument('http://localhost:3000/getPdf');
+        fetch('http://localhost:3000/getPdf',
+         { mode: 'no-cors'}).then(res => {
+            console.log(res, 'kkk')
+            return res.blob()
+        }).then(data => {
+            console.log(data, 'ddd')
+        })
+        loadingTask.promise.then(function (pdfDocument) {
+            // Request a first page
+            return pdfDocument.getPage(1).then(function (pdfPage) {
+            // Display page on the existing canvas with 100% scale.
+            var viewport = pdfPage.getViewport({ scale: 1.0 });
+            var canvas = document.getElementById("theCanvas");
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            var ctx = canvas.getContext("2d");
+            var renderTask = pdfPage.render({
+                canvasContext: ctx,
+                viewport: viewport,
+            });
+            return renderTask.promise;
+            });
+        })
+        .catch(function (reason) {
+            console.error("Error: " + reason);
+        });
+    </script>
+</body>
+</html>
